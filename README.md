@@ -28,12 +28,11 @@ Made with 😖 , 😓 &amp; 🤮
 ```sudo apt install r2ools```
 
 ## Usage
-**r2** ls or list <bucket-name>: lists all files in the bucket, lists all buckets if no name is supplied
+**r2** ```ls``` or ```list``` ```<bucket-name>```: lists all files in the bucket, lists all buckets if no name is supplied   
+**r2** ```put <bucket> <path to file>```: uploads file
 
-**r2** put <bucket> <path to file>: uploads file
+**r2** ```get <bucket> <file to get> <output path>```: downloads file
 
-**r2** get <bucket> <file to get> <output path>: downloads file
-
-**r2** sign <bucket> <file> <expiresin>: generate presigned url for file. Expiresin defaults to 3600s (1h)
+**r2** ```sign <bucket> <file> <expiresin>```: generate presigned url for file. Expiresin defaults to 3600s (1h)
 
 	
