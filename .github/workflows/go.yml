@@ -1,0 +1,62 @@
+name: 😮‍💨
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**.go"
+  workflow_dispatch:
+
+jobs:
+  buildl:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT }}
+          fetch-depth: 0
+      - name: Pre-Cleanup
+        run: |
+          rm binaries/* packages/*
+      - name: set up go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '^1.17.7'
+          check-latest: true
+      - name: get dependencies
+        run : |
+          go get github.com/goreleaser/nfpm/v2/cmd/nfpm
+          go install github.com/goreleaser/nfpm/v2/cmd/nfpm
+          go get github.com/joshhhhyyyy/increment
+          go install github.com/joshhhhyyyy/increment
+      - name: Build
+        run: |
+          go mod tidy
+          gofmt -s r2ools.go
+          env GOOS=linux GOARCH=amd64 go build -o binaries/r2ools_amd64 r2ools.go
+          env GOOS=linux GOARCH=arm64 go build -o binaries/r2ools_arm64 r2ools.go
+          env GOOS=linux GOARCH=arm go build -o binaries/r2ools_armhf r2ools.go
+          env GOOS=darwin GOARCH=amd64 go build -o binaries/r2ools_osx-amd64 r2ools.go
+          env GOOS=darwin GOARCH=arm64 go build -o binaries/r2ools_osx-arm64 r2ools.go
+          env GOOS=windows GOARCH=amd64 go build -o binaries/r2ools_windows-amd64 r2ools.go
+          env GOOS=windows GOARCH=arm64 go build -o binaries/r2ools_windows-arm64 r2ools.go
+          env GOOS=windows GOARCH=arm go build -o binaries/r2ools_windows-armhf r2ools.go
+
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v4
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+          git_tag_gpgsign: true
+          git_push_gpgsign: false
+      - name: set up git
+        run: |
+          git config --global gpg.program gpg2
+      - name: increment + commit
+        env:
+          key: ${{ secrets.SENTRYKEY }}
+        run: increment -nfpm

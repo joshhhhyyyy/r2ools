@@ -1,0 +1,11 @@
+name: "r2ools"
+arch: "amd64"
+platform: "linux"
+version: ${VERSION}
+section: "utils"
+maintainer: "joshy <joshua@joseos.com>"
+description: "cloudflare r2 tools"
+homepage: "https://github.com/joshhhhyyyy/r2ools"
+contents:
+- src: "binaries/r2ools_amd64"
+  dst: /usr/bin/r2

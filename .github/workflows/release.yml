@@ -1,0 +1,67 @@
+name: 📌
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT }}
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v4
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+          git_tag_gpgsign: true
+          git_push_gpgsign: false
+      - name: set up git
+        run: |
+          git config --global gpg.program gpg2
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.PAT }}
+          files: |
+            binaries/*
+            packages/*
+  upload:
+    needs: release
+    name: upload
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: joseoscom/apt
+          token: ${{ secrets.PATN }}
+          ref: main
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v4
+        with:
+          gpg_private_key: ${{ secrets.GPGN }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+          git_tag_gpgsign: true
+          git_push_gpgsign: false
+      - name: set up
+        run: |
+          git config --global gpg.program gpg2
+      - name: get files
+        run: |
+          rm r2ools*.deb Packages.gz
+          curl -s https://api.github.com/repos/joshhhhyyyy/r2ools/releases/latest | grep "browser_download_url.*deb" | cut -d : -f 2,3 | tr -d \" | wget -qi -
+          dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
+      - name: commit
+        run: |
+          git add .
+          git commit -m "👻"
+          git push origin main
