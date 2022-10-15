@@ -39,9 +39,15 @@ func main() {
 		fmt.Println("sign <bucket> <file> <expiresin>: generate presigned url for file. Expiresin defaults to 3600 seconds (1 hour)")
 	}
 
-	// Check if endpoint url is provided
-	endpointurl := os.Getenv("endpoint")
-	if endpointurl == "" {
+	// Check if endpoint url OR user id is provided
+	var endpointurl string
+	var endpointurlarray []string
+	if os.Getenv("endpoint") != "" {
+		endpointurl = os.Getenv("endpoint")
+	} else if os.Getenv("r2id") != "" {
+		endpointurlarray = []string{"https://", os.Getenv("r2id"), ".r2.cloudflarestorage.com"}
+		endpointurl = strings.Join(endpointurlarray, "")
+	} else {
 		panic("no endpoint url provided")
 	}
 

@@ -29,7 +29,10 @@ Made with 😖 , 😓 &amp; 🤮
 
 ## Usage
 ### Prerequisites
-- **An environment variable named ```endpoint``` that contains your s3 api endpoint url**
+- **Either:** 
+    - An environment variable named ```endpoint``` that contains your s3 api endpoint url, 
+    **OR**
+    - An environment variable named ```r2id``` that contains your cloudflare user id
 - **An existing bucket in cloudflare r2 (this tool does not allow you to create or delete buckets)**
 
 ### Available Subcommands
