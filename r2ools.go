@@ -33,7 +33,7 @@ func main() {
 	// r2 help
 	if os.Args[1] == "help" {
 		fmt.Println("Available Commands:")
-		fmt.Println("ls or list <bucket-name>: lists all files in the bucket, lists all buckets if no name is supplied")
+		fmt.Println("ls, list <bucket-name>: lists all files in the bucket, lists all buckets if no name is supplied")
 		fmt.Println("put <bucket> <path to file>: uploads file")
 		fmt.Println("get <bucket> <file to get> <output path>: downloads file")
 		fmt.Println("sign <bucket> <file> <expiresin>: generate presigned url for file. Expiresin defaults to 3600 seconds (1 hour)")
