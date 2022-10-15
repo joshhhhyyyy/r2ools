@@ -1,8 +1,8 @@
 # Backup &nbsp; &nbsp; &nbsp;[![Latest Release](https://img.shields.io/github/release/joshhhhyyyy/r2ools.svg)](https://github.com/joshhhhyyyy/r2ools/releases)      [![Go ReportCard](https://goreportcard.com/badge/joshhhhyyyy/r2ools)](https://goreportcard.com/report/joshhhhyyyy/r2ools)
 
 ## What is this?
-**A multitool for cloudflare r2, made for my personal use**
-**Interfaces with "aws" cli tool**
+**A wrapper for the official aws cli tool, with cloudflare r2 in mind**
+**This tool was designed for use by myself only. Support may not be provided for any issues faced.**
 
 Err handling by **[Sentry](sentry.io)** 
 
