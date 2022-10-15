@@ -28,8 +28,11 @@ Made with 😖 , 😓 &amp; 🤮
 ```sudo apt install r2ools```
 
 ## Usage
-**An environment variable named ```endpoint``` that contains your s3 api endpoint url**
+### Prerequisites
+- **An environment variable named ```endpoint``` that contains your s3 api endpoint url**
+- **An existing bucket in cloudflare r2 (this tool does not allow you to create or delete buckets)
 
+### Available Subcommands
 **r2** ```ls``` or ```list``` ```<bucket-name>```: lists all files in the bucket, lists all buckets if no name is supplied   
 
 **r2** ```put <bucket> <path to file>```: uploads file
