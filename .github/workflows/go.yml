@@ -57,6 +57,4 @@ jobs:
         run: |
           git config --global gpg.program gpg2
       - name: increment + commit
-        env:
-          key: ${{ secrets.SENTRYKEY }}
         run: increment -nfpm
