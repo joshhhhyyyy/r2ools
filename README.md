@@ -1,4 +1,5 @@
 # r2ools &nbsp; &nbsp; &nbsp;[![Latest Release](https://img.shields.io/github/release/joshhhhyyyy/r2ools.svg)](https://github.com/joshhhhyyyy/r2ools/releases)      [![Go ReportCard](https://goreportcard.com/badge/joshhhhyyyy/r2ools)](https://goreportcard.com/report/joshhhhyyyy/r2ools)
+![r2ools](https://socialify.git.ci/joshhhhyyyy/r2ools/image?font=Source%20Code%20Pro&language=1&name=1&owner=1&pattern=Overlapping%20Hexagons&theme=Dark)
 
 ## What is this?
 **A wrapper for the official aws cli tool, with cloudflare r2 in mind**
