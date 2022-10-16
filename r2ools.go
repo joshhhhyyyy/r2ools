@@ -30,15 +30,6 @@ func main() {
 		panic(sentryerr)
 	}
 
-	// r2 help
-	if os.Args[1] == "help" {
-		fmt.Println("Available Commands:")
-		fmt.Println("ls, list <bucket-name>: lists all files in the bucket, lists all buckets if no name is supplied")
-		fmt.Println("put <bucket> <path to file>: uploads file")
-		fmt.Println("get <bucket> <file to get> <output path>: downloads file")
-		fmt.Println("sign <bucket> <file> <expiresin>: generate presigned url for file. Expiresin default: 3600 seconds (1 hour)")
-	}
-
 	// Check if endpoint url OR user id is provided
 	var endpointurl string
 	var endpointurlarray []string
@@ -51,8 +42,17 @@ func main() {
 		panic("no endpoint url provided")
 	}
 
+	// r2 help
+	if os.Args[1] == "help" {
+		fmt.Println("Available Commands:")
+		fmt.Println("ls, list <bucket-name>: lists all files in the bucket, lists all buckets if no name is supplied")
+		fmt.Println("put <bucket> <path to file>: uploads file")
+		fmt.Println("get <bucket> <file to get> <output path>: downloads file")
+		fmt.Println("sign <bucket> <file> <expiresin>: generate presigned url for file. Expiresin default: 3600 seconds (1 hour)")
+	} else if
+
 	// r2 list (bucket)
-	if os.Args[1] == "ls" {
+	os.Args[1] == "ls" {
 		if os.Args[2] != "" {
 			listBucketCmd, err := exec.Command("aws", "s3api", "list-objects-v2", "--endpoint-url", endpointurl, "--bucket", os.Args[2]).Output()
 			log.Println("list of files in bucket ", os.Args[2], ":")
@@ -76,10 +76,10 @@ func main() {
 			log.Println(listBuckets)
 			check(err)
 		}
-	}
+	} else if
 
 	// r2 put
-	if os.Args[1] == "put" {
+	os.Args[1] == "put" {
 		if os.Args[2] != "" {
 			filetoputarray := []string{"s3://", os.Args[2], "/"}
 			putCmd, err := exec.Command("aws", "s3", "cp", "--endpoint-url", endpointurl, os.Args[3], strings.Join(filetoputarray, "")).Output()
@@ -88,10 +88,10 @@ func main() {
 		} else {
 			panic("no file provided")
 		}
-	}
+	} else if
 
 	// r2 get
-	if os.Args[1] == "get" {
+	os.Args[1] == "get" {
 		if os.Args[2] != "" {
 			filetoputarray := []string{"s3://", os.Args[2], "/", os.Args[3]}
 			if os.Args[4] != "" {
@@ -106,10 +106,10 @@ func main() {
 		} else {
 			panic("no file provided")
 		}
-	}
+	} else if
 
 	// r2 sign (bucket) (file) (expiresin)
-	if os.Args[1] == "sign" {
+	os.Args[1] == "sign" {
 		if os.Args[2] != "" && os.Args[3] != "" {
 			filetosignarray := []string{"s3://", os.Args[2], "/", os.Args[3]}
 			var expiresin string
@@ -145,5 +145,11 @@ func main() {
 		} else {
 			panic("no file provided")
 		}
+	} else {
+		fmt.Println("Available Commands:")
+		fmt.Println("ls, list <bucket-name>: lists all files in the bucket, lists all buckets if no name is supplied")
+		fmt.Println("put <bucket> <path to file>: uploads file")
+		fmt.Println("get <bucket> <file to get> <output path>: downloads file")
+		fmt.Println("sign <bucket> <file> <expiresin>: generate presigned url for file. Expiresin default: 3600 seconds (1 hour)")
 	}
 }

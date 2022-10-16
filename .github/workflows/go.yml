@@ -37,12 +37,10 @@ jobs:
           gofmt -s r2ools.go
           env GOOS=linux GOARCH=amd64 go build -o binaries/r2ools_amd64 r2ools.go
           env GOOS=linux GOARCH=arm64 go build -o binaries/r2ools_arm64 r2ools.go
-          env GOOS=linux GOARCH=arm go build -o binaries/r2ools_armhf r2ools.go
           env GOOS=darwin GOARCH=amd64 go build -o binaries/r2ools_osx-amd64 r2ools.go
           env GOOS=darwin GOARCH=arm64 go build -o binaries/r2ools_osx-arm64 r2ools.go
           env GOOS=windows GOARCH=amd64 go build -o binaries/r2ools_windows-amd64 r2ools.go
           env GOOS=windows GOARCH=arm64 go build -o binaries/r2ools_windows-arm64 r2ools.go
-          env GOOS=windows GOARCH=arm go build -o binaries/r2ools_windows-armhf r2ools.go
 
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v4
