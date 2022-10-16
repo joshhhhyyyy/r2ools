@@ -7,5 +7,5 @@ maintainer: "joshy <joshua@joseos.com>"
 description: "cloudflare r2 tools"
 homepage: "https://github.com/joshhhhyyyy/r2ools"
 contents:
-- src: "binaries/r2ools_amd64"
+- src: "binaries/r2ools_arm64"
   dst: /usr/bin/r2
