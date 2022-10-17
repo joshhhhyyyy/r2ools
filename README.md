@@ -29,6 +29,8 @@ Made with 😖 , 😓 &amp; 🤮
 
 ## Usage
 ### Prerequisites
+- **Configure the aws cli app via** ```aws configure```
+- **Set max_concurrent_requests to less than 3. ```aws configure set default.s3.max_concurrent_requests 3```
 - **Either:** 
     - An environment variable named ```endpoint``` that contains your s3 api endpoint url, 
     **OR**
